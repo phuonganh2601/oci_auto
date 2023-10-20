@@ -163,7 +163,7 @@ while to_try:
         # print(to_launch_instance.data)
         session.close()
     except oci.exceptions.ServiceError as e:
-        if e.status == 500:
+        if e.status == 500 or e.status == 429:
             # Out of host capacity.
             message = f"{e.message} Retry in {wait_s_for_retry}s"
             #telegram_notify(session, bot_api, chat_id, message)
